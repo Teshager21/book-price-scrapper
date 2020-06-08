@@ -17,4 +17,8 @@ class DataFilter < PageParser
   def product_price
     filter_by_class('span.p13n-sc-price', @document)
   end
+
+  def product_rating
+    filter_by_class('span.a-icon-alt', @document)
+  end
 end

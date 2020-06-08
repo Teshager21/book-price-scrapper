@@ -34,7 +34,7 @@ RSpec.describe DataFilter do
 
   describe '#product_rating' do
     it 'returns the number of product rating per page' do
-      expect(data_filter.product_rating.count).to eql(50)
+      expect(data_filter.product_rating.count).to eql(47)
     end
   end
 end
