@@ -33,4 +33,8 @@ class DataFilter < PageParser
   def product_name
     filter_by_class('a.a-link-normal div[data-rows="1"]', @cards)
   end
+
+  def product_link
+    filter_by_class('div.a-row a.a-link-normal', @cards)
+  end
 end
