@@ -22,6 +22,10 @@ class DataFilter < PageParser
     filter_by_class('span.a-icon-alt', @document)
   end
 
+  def product_rating_number
+    filter_by_class('div.a-icon-row a.a-size-small', @document)
+  end
+
   def product_maker
     filter_by_class('a.a-size-small', @document)
   end
