@@ -1,2 +1,8 @@
 #!/usr/bin/env ruby
-puts 'hello world!'
+require_relative '../lib/page_parser'
+require_relative '../lib/data_filter'
+page_parser = PageParser.new('https://www.amazon.com/Best-Sellers-Books-Deals/zgbs/books/45/ref=zg_bs_pg_1?_encoding=UTF8&pg=1')
+page_parser.bring_unparsed_page
+page_parser.parse_page
+data_filter = DataFilter.new(page_parser.parsed_page)
+puts(data_filter.document)

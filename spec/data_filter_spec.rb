@@ -19,4 +19,8 @@ RSpec.describe DataFilter do
     data_filter = DataFilter.new(doc)
     expect(data_filter.document).not_to eql(nil)
   end
+  describe '#item_cards'
+  it 'returns 50 card items per page' do
+    expect(data_filter.item_cards.count).to eql(50)
+  end
 end
