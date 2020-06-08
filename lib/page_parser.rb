@@ -1,4 +1,5 @@
+require 'httparty'
+
 class PageParser
-  attr_reader :url
-  attr_writer :url
+  attr_accessor :url
 end
