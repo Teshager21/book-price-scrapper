@@ -1,6 +1,6 @@
 require_relative('page_parser')
 class DataFilter < PageParser
-  attr_accessor :document
+  attr_accessor :document, :cards
 
   def initialize(document)
     @document = document
@@ -11,26 +11,26 @@ class DataFilter < PageParser
   end
 
   def item_cards
-    filter_by_class('li.zg-item-immersion', @document)
+    @cards = filter_by_class('li.zg-item-immersion', @document)
   end
 
   def product_price
-    filter_by_class('span.p13n-sc-price', @document)
+    filter_by_class('span.p13n-sc-price', @cards)
   end
 
   def product_rating
-    filter_by_class('span.a-icon-alt', @document)
+    filter_by_class('span.a-icon-alt', @cards)
   end
 
   def product_rating_number
-    filter_by_class('div.a-icon-row a.a-size-small', @document)
+    filter_by_class('div.a-icon-row a.a-size-small', @cards)
   end
 
   def product_maker
-    filter_by_class('a.a-size-small', @document)
+    filter_by_class('a.a-size-small', @cards)
   end
 
   def product_name
-    filter_by_class('a.a-link-normal div[data-rows="1"]', @document)
+    filter_by_class('a.a-link-normal div[data-rows="1"]', @cards)
   end
 end
