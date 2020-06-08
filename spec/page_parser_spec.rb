@@ -2,7 +2,10 @@ require 'rspec'
 require 'page_parser'
 
 RSpec.describe PageParser do
-  let(:page_parser) { PageParser.new }
+  let(:page_parser) do
+    PageParser.new('https://www.amazon.com/Best-Sellers
+    -Books-Deals/zgbs/books/45/ref=zg_bs_pg_1?_encoding=UTF8&pg=1')
+  end
 
   describe '#url' do
     it 'has a setter and getter for the url attribute ' do

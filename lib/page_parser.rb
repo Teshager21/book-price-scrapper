@@ -10,6 +10,12 @@ class PageParser
   def parse_page
     @parsed_page = Nokogiri::HTML(unparsed_page)
   end
+
+  def initialize(url)
+    @url = url
+    @parsed_page = nil
+    @unparsed_page = nil
+  end
 end
 
 # page_parser = PageParser.new
