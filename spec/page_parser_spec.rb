@@ -31,4 +31,10 @@ RSpec.describe PageParser do
       expect(page_parser.parse_page).not_to eql(nil)
     end
   end
+  describe '#intialize' do
+    it 'has an initialize that sets the url attribute' do
+      page_parser = PageParser.new('https://www.amazon.com/Best-Sellers-Books-Deals/zgbs/books/45/ref=zg_bs_pg_1?_encoding=UTF8&pg=1')
+      expect(page_parser.url).to eql('https://www.amazon.com/Best-Sellers-Books-Deals/zgbs/books/45/ref=zg_bs_pg_1?_encoding=UTF8&pg=1')
+    end
+  end
 end
