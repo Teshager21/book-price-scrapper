@@ -1,13 +1,16 @@
 require_relative('page_parser')
-require 'nokogiri'
-class DataFilter
+class DataFilter < PageParser
   attr_accessor :document
 
   def initialize(document)
     @document = document
   end
 
+  def filter_by_class(css_class, parsed_page)
+    super
+  end
+
   def item_cards
-    @document.css('li.zg-item-immersion')
+    filter_by_class('li.zg-item-immersion', @document)
   end
 end

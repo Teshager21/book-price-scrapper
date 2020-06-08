@@ -11,6 +11,10 @@ class PageParser
     @parsed_page = Nokogiri::HTML(@unparsed_page.body)
   end
 
+  def filter_by_class(css_class, parsed_page = @parsed_page)
+    parsed_page.css(css_class)
+  end
+
   def initialize(url)
     @url = url
     @parsed_page = nil
