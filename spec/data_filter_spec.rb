@@ -38,6 +38,12 @@ RSpec.describe DataFilter do
     end
   end
 
+  describe '#product_rating_number' do
+    it 'returns a non-zero number of ratings per non-empty page' do
+      expect(data_filter.product_rating_number.count).not_to eql(0)
+    end
+  end
+
   describe '#product_maker' do
     it 'returns the number of makers of product per page' do
       expect(data_filter.product_maker.count).not_to eql(0)
