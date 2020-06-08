@@ -1,9 +1,10 @@
 require_relative('page_parser')
 class DataFilter < PageParser
-  attr_accessor :document, :cards
+  attr_accessor :document, :cards, :page
 
   def initialize(document)
     @document = document
+    @page = []
   end
 
   def filter_by_class(css_class, parsed_page)
@@ -45,5 +46,16 @@ class DataFilter < PageParser
       rating: product_rating[item].text.strip,
       rating_num: product_rating_number[item].text.strip,
       link: 'https://www.amazon.com' + product_link[item].attr('href') }
+  end
+
+  def product_page
+    (0..@cards.count).each do |i|
+      begin
+        @page << product_data(i)
+      rescue StandardError
+        @page << ' '
+      end
+      # puts "\n #{page[i].keys} \n: #{page[i].values}\n"
+    end
   end
 end

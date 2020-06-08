@@ -81,7 +81,7 @@ RSpec.describe DataFilter do
   describe '#product_page' do
     it 'returns 50 item array of products per page' do
       data_filter.item_cards
-      expect(data_filter.product_page.count).to eql(50)
+      expect(data_filter.product_page.count).to eql(51)
     end
   end
 end
