@@ -18,7 +18,15 @@ RSpec.describe PageParser do
   end
   describe '#parsed_page' do
     it 'has a getter for the parsed_page attribute' do
+      page_parser.url = 'https://www.amazon.com/Best-Sellers-Books-Deals/zgbs/books/45/ref=zg_bs_pg_1?_encoding=UTF8&pg=1'
       expect(page_parser.parsed_page).not_to eql(nil)
+    end
+  end
+
+  describe '#page_parser' do
+    it 'returns a parsed page for a vialble url' do
+      page_parser.url = 'https://www.amazon.com/Best-Sellers-Books-Deals/zgbs/books/45/ref=zg_bs_pg_1?_encoding=UTF8&pg=1'
+      expect(page_parser.page_parser).not_to eql(nil)
     end
   end
 end
