@@ -13,4 +13,8 @@ class DataFilter < PageParser
   def item_cards
     filter_by_class('li.zg-item-immersion', @document)
   end
+
+  def product_price
+    filter_by_class('span.p13n-sc-price', @document)
+  end
 end
