@@ -6,4 +6,8 @@ class DataFilter
   def initialize(document)
     @document = document
   end
+
+  def item_cards
+    @document.css('li.zg-item-immersion')
+  end
 end

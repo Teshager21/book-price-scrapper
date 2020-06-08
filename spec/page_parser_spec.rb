@@ -3,8 +3,7 @@ require 'page_parser'
 
 RSpec.describe PageParser do
   let(:page_parser) do
-    PageParser.new('https://www.amazon.com/Best-Sellers
-    -Books-Deals/zgbs/books/45/ref=zg_bs_pg_1?_encoding=UTF8&pg=1')
+    PageParser.new('https://www.amazon.com/Best-Sellers-Books-Deals/zgbs/books/45/ref=zg_bs_pg_1?_encoding=UTF8&pg=1')
   end
 
   describe '#url' do
@@ -21,7 +20,7 @@ RSpec.describe PageParser do
   end
   describe '#parsed_page' do
     it 'has a getter for the parsed_page attribute' do
-      page_parser.url = 'https://www.amazon.com/Best-Sellers-Books-Deals/zgbs/books/45/ref=zg_bs_pg_1?_encoding=UTF8&pg=1'
+      page_parser.bring_unparsed_page
       page_parser.parse_page
       expect(page_parser.parsed_page).not_to eql(nil)
     end
@@ -29,9 +28,9 @@ RSpec.describe PageParser do
 
   describe '#parse_page' do
     it 'returns a parsed page for a vialble url' do
-      page_parser.url = 'https://www.amazon.com/Best-Sellers-Books-Deals/zgbs/books/45/ref=zg_bs_pg_1?_encoding=UTF8&pg=1'
+      page_parser.bring_unparsed_page
       page_parser.parse_page
-      expect(page_parser.parse_page).not_to eql(nil)
+      expect(page_parser.parsed_page).not_to eql(nil)
     end
   end
   describe '#intialize' do

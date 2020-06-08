@@ -5,4 +5,4 @@ page_parser = PageParser.new('https://www.amazon.com/Best-Sellers-Books-Deals/zg
 page_parser.bring_unparsed_page
 page_parser.parse_page
 data_filter = DataFilter.new(page_parser.parsed_page)
-puts(data_filter.document)
+puts(data_filter.item_cards.count)
