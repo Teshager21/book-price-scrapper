@@ -3,13 +3,13 @@ require 'data_filter'
 require 'page_parser'
 
 RSpec.describe DataFilter do
-  let(:data_filter) { DataFilter.new }
   let(:doc) do
     page_parser = PageParser.new('https://www.amazon.com/Best-Sellers-Books
    -Deals/zgbs/books/45/ref=zg_bs_pg_1?_encoding=UTF8&pg=1')
     page_parser.parse_page
     page_parser.parsed_page
   end
+  let(:data_filter) { DataFilter.new(doc) }
   describe '#document'
   it 'has a getter for the document attribute' do
     expect(data_filter.document).not_to eql(nil)
