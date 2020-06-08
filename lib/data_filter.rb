@@ -25,4 +25,8 @@ class DataFilter < PageParser
   def product_maker
     filter_by_class('a.a-size-small', @document)
   end
+
+  def product_name
+    filter_by_class('a.a-link-normal div[data-rows="1"]', @document)
+  end
 end

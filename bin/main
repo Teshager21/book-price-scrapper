@@ -6,4 +6,4 @@ page_parser.bring_unparsed_page
 page_parser.parse_page
 data_filter = DataFilter.new(page_parser.parsed_page)
 puts(data_filter.item_cards.count)
-puts("\n#{data_filter.product_maker} \n")
+puts(data_filter.product_name.text)
