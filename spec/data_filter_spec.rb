@@ -40,7 +40,7 @@ RSpec.describe DataFilter do
 
   describe '#product_maker' do
     it 'returns the number of makers of product per page' do
-      expect(data_filter.product_maker.count).no_to eql(0)
+      expect(data_filter.product_maker.count).not_to eql(0)
     end
   end
 end

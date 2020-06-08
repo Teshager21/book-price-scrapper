@@ -21,4 +21,8 @@ class DataFilter < PageParser
   def product_rating
     filter_by_class('span.a-icon-alt', @document)
   end
+
+  def product_maker
+    filter_by_class('a.a-size-small', @document)
+  end
 end
