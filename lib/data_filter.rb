@@ -37,4 +37,13 @@ class DataFilter < PageParser
   def product_link
     filter_by_class('div.a-row a.a-link-normal', @cards)
   end
+
+  def product_data(item)
+    { name: product_name[item].text,
+      maker: product_maker[item].text,
+      price: product_price[item].text,
+      rating: product_rating[item].text,
+      rating_num: product_rating_number[item].text,
+      link: 'https://www.amazon.com' + product_link[item].attr('href') }
+  end
 end

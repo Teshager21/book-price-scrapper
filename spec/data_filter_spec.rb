@@ -67,4 +67,14 @@ RSpec.describe DataFilter do
       expect(data_filter.product_link.count).to eql(50)
     end
   end
+  describe '#product_data' do
+    it 'returns the detail of a given product' do
+      data_filter.item_cards
+      expect(data_filter.product_data(1)).to eql(
+        { name: "\n            I Know Why the Caged Bird Sings\n        ",
+          maker: '6,709', price: '$7.99', rating: '4.7 out of 5 stars', rating_num: '4,571',
+          link: 'https://www.amazon.com/Know-Why-Caged-Bird-Sings/dp/0345514408?_encoding=UTF8&psc=1' }
+      )
+    end
+  end
 end
