@@ -39,11 +39,11 @@ class DataFilter < PageParser
   end
 
   def product_data(item)
-    { name: product_name[item].text,
-      maker: product_maker[item].text,
-      price: product_price[item].text,
-      rating: product_rating[item].text,
-      rating_num: product_rating_number[item].text,
+    { name: product_name[item].text.strip,
+      maker: product_maker[item].text.strip,
+      price: product_price[item].text.strip,
+      rating: product_rating[item].text.strip,
+      rating_num: product_rating_number[item].text.strip,
       link: 'https://www.amazon.com' + product_link[item].attr('href') }
   end
 end
