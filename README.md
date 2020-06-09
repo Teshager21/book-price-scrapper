@@ -54,7 +54,7 @@ In this project, I wrote a script that scrapes data from Amazon using ruby. The 
 
     Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page]().
+Feel free to check the [issues page](https://github.com/Teshager21/online-sales-data-scrapper/issues).
 
 ## Show your support
 
