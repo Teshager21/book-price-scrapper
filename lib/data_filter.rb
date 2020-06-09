@@ -40,7 +40,7 @@ class DataFilter < PageParser
   end
 
   def product_data(item)
-    { name: product_name[item].text.strip,
+    { name: product_name[item].text.strip.upcase,
       maker: product_maker[item].text.strip,
       price: product_price[item].text.strip,
       rating: product_rating[item].text.strip,
@@ -52,10 +52,14 @@ class DataFilter < PageParser
     (0..@cards.count).each do |i|
       begin
         @page << product_data(i)
+
+        (0..5).each do |j|
+          puts "\n    #{product_data(i).keys[j].upcase}:  #{product_data(i).values[j]}"
+        end
+        puts '_________________________________________________________________________________________________________'
       rescue StandardError
         @page << ' '
       end
-      # puts "\n #{page[i].keys} \n: #{page[i].values}\n"
     end
   end
 end
