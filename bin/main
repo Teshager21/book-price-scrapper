@@ -18,7 +18,7 @@ url_matcher = { 'b' => 'https://www.amazon.com/Best-Sellers-Books-Deals/zgbs/boo
                 'g' => 'https://www.amazon.co.uk/Best-Sellers-PC-Video-Games-PlayStation-Consoles-Accessories/'\
  'zgbs/videogames/13978348031/ref=zg_bs_pg_2?_encoding=UTF8&pg=' }
 
-(1..100).each do |i|
+(1..999).each do |i|
   i = i.to_s
   begin
     url = url_matcher[selection] + i
