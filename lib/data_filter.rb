@@ -1,7 +1,6 @@
 require_relative('page_parser')
 class DataFilter < PageParser
-  attr_accessor :document, :cards, :page, :category
-
+  attr_reader :cards, :document, :page
   def initialize(document)
     @document = document
     @page = []
@@ -27,8 +26,8 @@ class DataFilter < PageParser
     filter_by_class('div.a-icon-row a.a-size-small', @cards)
   end
 
-  def product_maker
-    if @category == 'b' or @category == 'bg'
+  def product_maker(category)
+    if %w[b bg cp].include?(category)
       filter_by_class('span.a-size-small', @cards)
     else
       temp = filter_by_class('span.a-size-small', @cards)
@@ -36,8 +35,8 @@ class DataFilter < PageParser
     end
   end
 
-  def product_name
-    if @category == 'b' or @category == 'm'
+  def product_name(category)
+    if %w[b m].include? category
       filter_by_class('a.a-link-normal div[data-rows="1"]', @cards)
     else
       filter_by_class('a.a-link-normal div[data-rows="2"]', @cards)
@@ -50,33 +49,36 @@ class DataFilter < PageParser
 
   def to_text(given)
     if given.nil?
-      'none '
+      'Not given'
     else
       given.text
     end
   end
 
-  def product_data(item)
-    { name: to_text(product_name[item]).strip.upcase,
-      maker: to_text(product_maker[item]).strip,
+  def product_data(item, category)
+    { name: to_text(product_name(category)[item]).strip.upcase,
+      maker: to_text(product_maker(category)[item]).strip,
       price: to_text(product_price[item]).strip,
       rating: to_text(product_rating[item]).strip,
       rating_num: to_text(product_rating_number[item]).strip,
       link: 'https://www.amazon.com' + product_link[item].attr('href') }
   end
 
-  def product_page
+  def product_page(category)
+    table = ''
     (0..@cards.count).each do |i|
       begin
-        @page << product_data(i)
+        @page << product_data(i, category)
 
         (0..5).each do |j|
-          puts "\n    #{product_data(i).keys[j].upcase}:  #{product_data(i).values[j]}"
+          table += "\n    #{product_data(i, category).keys[j].upcase}:  #{product_data(i, category).values[j]}"
         end
-        puts '_________________________________________________________________________________________________________'
+        table += "\n  _____________________________________________________________________________________________" \
+        "_______________________________________________________________________________________\n"
       rescue StandardError
         @page << ' '
       end
     end
+    table
   end
 end

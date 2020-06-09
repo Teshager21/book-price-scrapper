@@ -2,44 +2,41 @@
 require_relative '../lib/page_parser'
 require_relative '../lib/data_filter'
 system('clear')
-puts " CHOOSE THE CATEGOTY OF YOUR INTEREST(use the shortcut letters in the brackets)\n"
-puts "\n  Books(b)       |   Laptops(l)          |  Bags(bg)  |  Clothing(c)\n"
-puts "\n  Car Parts(cr)  |   Classical Music(m)  |  Bags(bg)  |  Clothing(c)\n\n"
-puts 'Select what you want to scrap:'
+puts " \n             CHOOSE THE CATEGOTY OF YOUR INTEREST(use the shortcut letters in the brackets)\n" \
+     "\n                Books(b)       |   Laptops(l)          |   Games(g)   |   Clothing(c)\n" \
+     "\n                Car Parts(cp)  |   Classical Music(m)  |   Bags(bg)   |   Clothing(c)\n\n" \
+     "Select what you want to scrap:\n\n"
 selection = gets.chomp.downcase
 
-(1..1000).each do |i|
-  case selection
-  when 'b'
-    url = 'https://www.amazon.com/Best-Sellers-Books-Deals/zgbs/books/45/ref=zg_bs_pg_1?_encoding=UTF8&pg=' + i.to_s
-  when 'bg'
-    url = 'https://www.amazon.com/Best-Sellers-Computers-Accessories-Laptop-Messenger-'\
-    'Shoulder-Bags/zgbs/pc/3012921011/ref=zg_bs_pg_1?_encoding=UTF8&pg=' + i.to_s
-  when 'l'
-    url = 'https://www.amazon.co.uk/gp/most-wished-for/computers/429886031/ref=zg_mw_pg_2/'
-    +'261-4675934-0829812?ie=UTF8&pg=' + i.to_s
-  when 'c'
-    url = 'https://www.amazon.co.uk/gp/most-wished-for/clothing/ref=zg_mw_pg_2?ie=UTF8&pg=' + i.to_s
-  when 'cr'
-    url = 'https://www.amazon.co.uk/gp/new-releases/automotive/ref=zg_bsnr_pg_2?ie=UTF8&pg=' + i.to_s
-  when 'm'
-    url = 'https://www.amazon.co.uk/Best-Sellers-Music-Symphonies-Orchestras/zgbs/music/505594/'
-    +'ref=zg_bs_pg_2?_encoding=UTF8&pg=' + i.to_s
-  else puts 'wrong input'
-  end
-  page_parser = PageParser.new(url)
+url_matcher = { 'b' => 'https://www.amazon.com/Best-Sellers-Books-Deals/zgbs/books/45/ref=zg_bs_pg_1?_encoding=UTF8&pg=',
+                'bg' => 'https://www.amazon.com/Best-Sellers-Computers-Accessories-Laptop-Messenger-'\
+ 'Shoulder-Bags/zgbs/pc/3012921011/ref=zg_bs_pg_1?_encoding=UTF8&pg=',
+                'l' => 'https://www.amazon.co.uk/gp/most-wished-for/computers/429886031/ref=zg_mw_pg_2/261-4675934-0829812?ie=UTF8&pg=',
+                'c' => 'https://www.amazon.co.uk/gp/most-wished-for/clothing/ref=zg_mw_pg_2?ie=UTF8&pg=',
+                'cp' => 'https://www.amazon.co.uk/gp/new-releases/automotive/ref=zg_bsnr_pg_2?ie=UTF8&pg=',
+                'm' => 'https://www.amazon.co.uk/Best-Sellers-Music-Symphonies-Orchestras/zgbs/music/505594/ref=zg_bs_pg_2?_encoding=UTF8&pg=',
+                'g' => 'https://www.amazon.co.uk/Best-Sellers-PC-Video-Games-PlayStation-Consoles-Accessories/'\
+ 'zgbs/videogames/13978348031/ref=zg_bs_pg_2?_encoding=UTF8&pg=' }
 
-  page_parser.bring_unparsed_page
+(1..100).each do |i|
+  i = i.to_s
+  begin
+    url = url_matcher[selection] + i
+  rescue StandardError
+    puts 'Wrong Input'
+    exit
+  end
+
+  page_parser = PageParser.new(url)
   page_parser.parse_page
 
   data_filter = DataFilter.new(page_parser.parsed_page)
-  data_filter.category = selection
   data_filter.item_cards
   break if data_filter.item_cards.count.zero?
 
-  data_filter.product_page
-  puts 'LOADING THE NEXT PAGE ...'
-  puts 'PRESS e TO STOP SCRAPPING'
+  puts data_filter.product_page(selection)
+  puts "\n   LOADING THE NEXT PAGE ..."
+  puts "\n   PRESS e TO STOP SCRAPPING"
   option = gets.chomp
   break if option.downcase == 'e'
 end

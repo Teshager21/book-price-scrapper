@@ -8,6 +8,7 @@ class PageParser
   end
 
   def parse_page
+    bring_unparsed_page
     @parsed_page = Nokogiri::HTML(@unparsed_page.body)
   end
 
