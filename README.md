@@ -1,4 +1,4 @@
-# Amazon Best Selling Prodcuts Data Scraper
+# Amazon Best Selling Products Data Scraper
 
 In this project, I wrote a script that scrapes data from Amazon webpage using ruby. The main goal of this project is to create an effective ruby code that solves real life problem. The project is used to demonstrate a complete project building skill utilizing git-flow, unit-testing, file organisation and leverage of best practices while underscoring softskills like ability to mulittask and transform a business requirement into a software solution.
 
@@ -9,7 +9,7 @@ In this project, I wrote a script that scrapes data from Amazon webpage using ru
 - httparty
 
 ![screenshot](images/amazon-scrap.png)
-![screenshot](images/scrap-screenshot.png)
+![screenshot](images/scrapper-screenshot.png)
 
 ## How to use this scrapper
 

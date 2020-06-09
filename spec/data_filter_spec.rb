@@ -5,8 +5,6 @@ require 'page_parser'
 RSpec.describe DataFilter do
   let(:doc) do
     page_parser = PageParser.new('https://www.amazon.com/Best-Sellers-Books-Deals/zgbs/books/45/ref=zg_bs_pg_1?_encoding=UTF8&pg=1')
-
-    page_parser.bring_unparsed_page
     page_parser.parse_page
     return page_parser.parsed_page
   end
@@ -50,15 +48,17 @@ RSpec.describe DataFilter do
 
   describe '#product_maker' do
     it 'returns the number of makers of product per page' do
+      category = 'g'
       data_filter.item_cards
-      expect(data_filter.product_maker.count).not_to eql(0)
+      expect(data_filter.product_maker(category).count).not_to eql(0)
     end
   end
 
   describe '#product_name' do
     it 'returns the number of names of product per page' do
+      category = 'b'
       data_filter.item_cards
-      expect(data_filter.product_name.count).to eql(50)
+      expect(data_filter.product_name(category).count).to eql(50)
     end
   end
   describe '#product_link' do
@@ -69,15 +69,18 @@ RSpec.describe DataFilter do
   end
   describe '#product_data' do
     it 'returns the detail of a given product' do
+      category = 'l'
       data_filter.item_cards
-      expect(data_filter.product_data(1)).not_to eql(nil)
+      expect(data_filter.product_data(1, category)).not_to eql(nil)
     end
   end
 
   describe '#product_page' do
     it 'returns 50 item array of products per page' do
+      category = 'b'
       data_filter.item_cards
-      expect(data_filter.product_page.count).to eql(51)
+      data_filter.product_data(1, category)
+      expect(data_filter.product_page(category)).not_to eql(nil)
     end
   end
 end
