@@ -1,6 +1,6 @@
 require_relative('page_parser')
 class DataFilter < PageParser
-  attr_accessor :document, :cards, :page
+  attr_accessor :document, :cards, :page, :category
 
   def initialize(document)
     @document = document
@@ -28,23 +28,40 @@ class DataFilter < PageParser
   end
 
   def product_maker
-    filter_by_class('a.a-size-small', @cards)
+    if @category == 'b' or @category == 'bg'
+      filter_by_class('span.a-size-small', @cards)
+    else
+      temp = filter_by_class('span.a-size-small', @cards)
+      filter_by_class('span.a-color-base', temp)
+    end
   end
 
   def product_name
-    filter_by_class('a.a-link-normal div[data-rows="1"]', @cards)
+    if @category == 'b' or @category == 'm'
+      filter_by_class('a.a-link-normal div[data-rows="1"]', @cards)
+    else
+      filter_by_class('a.a-link-normal div[data-rows="2"]', @cards)
+    end
   end
 
   def product_link
     filter_by_class('div.a-row a.a-link-normal', @cards)
   end
 
+  def to_text(given)
+    if given.nil?
+      'none '
+    else
+      given.text
+    end
+  end
+
   def product_data(item)
-    { name: product_name[item].text.strip.upcase,
-      maker: product_maker[item].text.strip,
-      price: product_price[item].text.strip,
-      rating: product_rating[item].text.strip,
-      rating_num: product_rating_number[item].text.strip,
+    { name: to_text(product_name[item]).strip.upcase,
+      maker: to_text(product_maker[item]).strip,
+      price: to_text(product_price[item]).strip,
+      rating: to_text(product_rating[item]).strip,
+      rating_num: to_text(product_rating_number[item]).strip,
       link: 'https://www.amazon.com' + product_link[item].attr('href') }
   end
 
