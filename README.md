@@ -8,7 +8,8 @@ In this project, I wrote a script that scrapes data from Amazon using ruby. The 
 - nokogiri
 - httparty
 
-![screenshot]()
+![screenshot](images/amazon-scrap.png)
+![screenshot](images/scrap-screenshot.png)
 
 ## How to use this scrapper
 
