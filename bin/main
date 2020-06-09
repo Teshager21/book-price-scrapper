@@ -28,15 +28,13 @@ url_matcher = { 'b' => 'https://www.amazon.com/Best-Sellers-Books-Deals/zgbs/boo
   end
 
   page_parser = PageParser.new(url)
-  page_parser.parse_page
 
-  data_filter = DataFilter.new(page_parser.parsed_page)
+  data_filter = DataFilter.new(page_parser.parse_page)
   data_filter.item_cards
   break if data_filter.item_cards.count.zero?
 
   puts data_filter.product_page(selection)
-  puts "\n   LOADING THE NEXT PAGE ..."
-  puts "\n   PRESS e TO STOP SCRAPPING"
+  puts "\n   LOADING THE NEXT PAGE ..." + "\n   PRESS e TO STOP SCRAPPING OR ANYOTHER CHARACTER TO CONTINUE"
   option = gets.chomp
   break if option.downcase == 'e'
 end
