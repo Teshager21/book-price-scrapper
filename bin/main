@@ -4,7 +4,7 @@ require_relative '../lib/data_filter'
 system('clear')
 puts " \n             CHOOSE THE CATEGOTY OF YOUR INTEREST(use the shortcut letters in the brackets)\n" \
      "\n                Books(b)       |   Laptops(l)          |   Games(g)   |   Clothing(c)\n" \
-     "\n                Car Parts(cp)  |   Classical Music(m)  |   Bags(bg)   |   Clothing(c)\n\n" \
+     "\n                Car Parts(cp)  |   Classical Music(m)  |   Bags(bg)   |   Beautiy(bt)\n\n" \
      "Select what you want to scrap:\n\n"
 selection = gets.chomp.downcase
 
@@ -16,7 +16,8 @@ url_matcher = { 'b' => 'https://www.amazon.com/Best-Sellers-Books-Deals/zgbs/boo
                 'cp' => 'https://www.amazon.co.uk/gp/new-releases/automotive/ref=zg_bsnr_pg_2?ie=UTF8&pg=',
                 'm' => 'https://www.amazon.co.uk/Best-Sellers-Music-Symphonies-Orchestras/zgbs/music/505594/ref=zg_bs_pg_2?_encoding=UTF8&pg=',
                 'g' => 'https://www.amazon.co.uk/Best-Sellers-PC-Video-Games-PlayStation-Consoles-Accessories/'\
- 'zgbs/videogames/13978348031/ref=zg_bs_pg_2?_encoding=UTF8&pg=' }
+ 'zgbs/videogames/13978348031/ref=zg_bs_pg_2?_encoding=UTF8&pg=',
+                'bt' => 'https://www.amazon.co.uk/gp/most-wished-for/beauty/ref=zg_mw_pg_2?ie=UTF8&pg=' }
 
 (1..999).each do |i|
   i = i.to_s
