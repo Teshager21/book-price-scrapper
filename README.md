@@ -1,6 +1,6 @@
-# Amazon Best Selling Prodcuts Scraper
+# Amazon Best Selling Prodcuts Data Scraper
 
-In this project, I wrote a script that scrapes data from Amazon using ruby. The main goal of this project is to put into practice the main concepts of Object Oriented Programming. Particularly, objects and access to their attributes.
+In this project, I wrote a script that scrapes data from Amazon webpage using ruby. The main goal of this project is to create an effective ruby code that solves real life problem. The project is used to demonstrate a complete project building skill utilizing git-flow, unit-testing, file organisation and leverage of best practices while underscoring softskills like ability to mulittask and transform a business requirement into a software solution.
 
 ## Built With
 
@@ -22,7 +22,7 @@ In this project, I wrote a script that scrapes data from Amazon using ruby. The 
     1. Click on the install or download button under the repository name and grab the url
     by clicking on the clipboard icon
 
-![Step-1](images/github.png)
+![Step-1](images/clone-screenshot.png)
 
     2.open your terminal
 
