@@ -2,8 +2,6 @@
 require_relative '../lib/page_parser'
 require_relative '../lib/data_filter'
 require_relative '../lib/url_matcher'
-
-include UrlMatcher
 system('clear')
 puts " \n             CHOOSE THE CATEGOTY OF YOUR INTEREST(use the shortcut letters in the brackets)\n" \
      "\n                Books(b)       |   Laptops(l)          |   Games(g)   |   Clothing(c)\n" \
@@ -14,7 +12,8 @@ selection = gets.chomp.downcase
 (1..999).each do |i|
   i = i.to_s
   begin
-    url = url_matcher(selection) + i
+    url_matcher = UrlMatcher.new(selection)
+    url = url_matcher.match_url + i
   rescue StandardError
     puts 'Wrong Input'
     exit
