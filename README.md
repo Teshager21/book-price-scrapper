@@ -16,7 +16,7 @@ In this project, I wrote a script that scrapes data from Amazon webpage using ru
 1. Make sure you have ruby installed
      Type `ruby --version` and see if you get the version number.
      If you don't have ruby installed use [this](https://www.tutorialspoint.com/ruby-on-rails/rails-installation.htm) link to know how to install it.
-2. Type `istall bundle` and press enter to install dependencies
+2. Type `install bundle` and press enter to install dependencies
 3.From the bin folder right click on the main file and select the open with the terminal option
 4. Type `ruby main` to run it
 5. Select the catergory of product you will like to scrap by typing the shortcuts within the parenthesis
