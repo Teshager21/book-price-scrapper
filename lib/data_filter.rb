@@ -6,6 +6,24 @@ class DataFilter < PageParser
     @page = []
   end
 
+  def product_page(category)
+    table = ''
+    (0..@cards.count).each do |i|
+      begin
+        @page << product_data(i, category)
+
+        (0..5).each do |j|
+          table += "\n    #{product_data(i, category).keys[j].upcase}:  #{product_data(i, category).values[j]}"
+        end
+        table += "\n  _____________________________________________________________________________________________" \
+        "_______________________________________________________________________________________\n"
+      rescue StandardError
+        @page << ' '
+      end
+    end
+    table
+  end
+
   def filter_by_class(css_class, parsed_page)
     super
   end
@@ -13,6 +31,8 @@ class DataFilter < PageParser
   def item_cards
     @cards = filter_by_class('li.zg-item-immersion', @document)
   end
+
+  private
 
   def product_price
     filter_by_class('span.p13n-sc-price', @cards)
@@ -62,23 +82,5 @@ class DataFilter < PageParser
       rating: to_text(product_rating[item]).strip,
       rating_num: to_text(product_rating_number[item]).strip,
       link: 'https://www.amazon.com' + product_link[item].attr('href') }
-  end
-
-  def product_page(category)
-    table = ''
-    (0..@cards.count).each do |i|
-      begin
-        @page << product_data(i, category)
-
-        (0..5).each do |j|
-          table += "\n    #{product_data(i, category).keys[j].upcase}:  #{product_data(i, category).values[j]}"
-        end
-        table += "\n  _____________________________________________________________________________________________" \
-        "_______________________________________________________________________________________\n"
-      rescue StandardError
-        @page << ' '
-      end
-    end
-    table
   end
 end
