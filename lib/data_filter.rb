@@ -6,6 +6,15 @@ class DataFilter < PageParser
     @page = []
   end
 
+  def product_data(item, category)
+    { name: to_text(product_name(category)[item]).strip.upcase,
+      maker: to_text(product_maker(category)[item]).strip,
+      price: to_text(product_price[item]).strip,
+      rating: to_text(product_rating[item]).strip,
+      rating_num: to_text(product_rating_number[item]).strip,
+      link: 'https://www.amazon.com' + product_link[item].attr('href') }
+  end
+
   def product_page(category)
     table = ''
     (0..@cards.count).each do |i|
@@ -73,14 +82,5 @@ class DataFilter < PageParser
     else
       given.text
     end
-  end
-
-  def product_data(item, category)
-    { name: to_text(product_name(category)[item]).strip.upcase,
-      maker: to_text(product_maker(category)[item]).strip,
-      price: to_text(product_price[item]).strip,
-      rating: to_text(product_rating[item]).strip,
-      rating_num: to_text(product_rating_number[item]).strip,
-      link: 'https://www.amazon.com' + product_link[item].attr('href') }
   end
 end

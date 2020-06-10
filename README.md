@@ -14,8 +14,9 @@ In this project, I wrote a script that scrapes data from Amazon webpage using ru
 ## How to use this scrapper
 
 1. From the bin folder right click on the main file and select open with terminal option
+2. Type `ruby main` to run it
 2. Select the catergory of product you will like to scrap by typing the shortcuts within the brackets
-3. Press e to exit or stop scrapping 
+4. Press e to exit or stop scrapping 
 
 ### How to install using Command line
 
