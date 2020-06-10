@@ -12,7 +12,16 @@ class PageParser
   end
 
   def initialize(url)
+    try = 3
     @parsed_page = nil
-    @unparsed_page = HTTParty.get(url)
+    begin
+      @unparsed_page = HTTParty.get(url)
+    rescue StandardError
+      retry unless (try -= 1).zero?
+      if try.zero?
+        puts 'Failed to connect to server'
+        exit
+      end
+    end
   end
 end
