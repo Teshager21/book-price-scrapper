@@ -31,5 +31,5 @@ loop do
   option = gets.chomp
   break if option.downcase == 'e'
 
-  i = i.to_s
+  i = i.to_i
 end
