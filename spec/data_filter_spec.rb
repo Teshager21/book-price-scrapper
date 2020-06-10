@@ -1,6 +1,6 @@
 require 'rspec'
-require 'data_filter'
-require 'page_parser'
+require_relative '../lib/data_filter'
+require_relative '../lib/page_parser'
 
 RSpec.describe DataFilter do
   let(:doc) do

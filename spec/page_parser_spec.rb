@@ -1,5 +1,5 @@
 require 'rspec'
-require 'page_parser'
+require_relative '../lib/page_parser'
 
 RSpec.describe PageParser do
   let(:page_parser) do
