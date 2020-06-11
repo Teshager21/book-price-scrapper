@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+require_relative '../lib/page_parser'
+require_relative '../lib/data_filter'
+require_relative '../lib/url_matcher'
+system('clear')
+puts " \n             CHOOSE THE CATEGOTY OF YOUR INTEREST(use the shortcut letters in the brackets)\n" \
+     "\n                Books(b)       |   Laptops(l)          |   Games(g)   |   Clothing(c)\n" \
+     "\n                Car Parts(cp)  |   Classical Music(m)  |   Bags(bg)   |   Beautiy(bt)\n\n" \
+     "Select what you want to scrap:\n\n"
+selection = gets.chomp.downcase
+i = 0
+loop do
+  i += 1
+  i = i.to_s
+  begin
+    url_matcher = UrlMatcher.new(selection)
+    url = url_matcher.match_url + i
+  rescue StandardError
+    puts 'Wrong Input'
+    exit
+  end
+
+  page_parser = PageParser.new(url)
+
+  data_filter = DataFilter.new(page_parser.parse_page)
+  data_filter.item_cards
+  break if data_filter.item_cards.count.zero?
+
+  puts data_filter.product_page(selection)
+  puts "\n   LOADING THE NEXT PAGE ..." + "\n   PRESS e TO STOP SCRAPPING OR ANYOTHER CHARACTER TO CONTINUE"
+  option = gets.chomp
+  break if option.downcase == 'e'
+
+  i = i.to_i
+end
